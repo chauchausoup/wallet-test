@@ -19,26 +19,31 @@ export default function WalletData({ closeModal }) {
 
 	return (
 		<div>
-			{account && <a
-				{...{
-					href: formatEtherscanLink("Account", [chainId, account]),
-					target: "_blank",
-					rel: "noopener noreferrer",
-				}}
-			>
-				{ENSName || `${shortenHex(account, 4)}`}
-			</a>}
+			<div className="flex flex-col items-center justify-center">
+				{account && <a
+					{...{
+						href: formatEtherscanLink("Account", [chainId, account]),
+						target: "_blank",
+						rel: "noopener noreferrer",
+					}}
+				>
+					{ENSName || `${shortenHex(account, 4)}`}
+				</a>}
 
-			<ETHBalance />
+				<ETHBalance />
 
-			<ChainId />
+				<ChainId />
+			</div >
 
-			<button onClick={() => { disconnectHandler() }}>
-				Disconnect
-			</button>
+			<div className='flex flex-row items-center justify-center '>
 
-			<button onClick={closeModal}>Close</button>
+				<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={() => { disconnectHandler() }}>
+					Disconnect
+				</button>
 
-		</div >
+				<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={closeModal}>Close</button>
+
+			</div>
+		</div>
 	)
 }

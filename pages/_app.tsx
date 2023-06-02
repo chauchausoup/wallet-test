@@ -1,8 +1,7 @@
 import { Web3ReactProvider } from "@web3-react/core";
 import type { AppProps } from "next/app";
 import Modal from 'react-modal';
-import './globals.css'
-
+import '../globals.css'
 
 import getLibrary from "../getLibrary";
 

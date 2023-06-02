@@ -3,11 +3,6 @@ module.exports = {
   // ...
 
   // Enable PostCSS
-  postcss: {
-    plugins: [
-      require('tailwindcss'),
-      require('autoprefixer'),
-      // Add any other PostCSS plugins you may be using
-    ],
-  },
+  reactStrictMode: true,
+
 };

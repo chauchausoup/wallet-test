@@ -20,9 +20,10 @@ export default function AlertModal({ closeModal }) {
 
 	if (typeof account !== "string") {
 		return (
-			<div>
+			<div className='flex flex-row items-center justify-center'>
 				{isWeb3Available ? (
 					<button
+						className='border border-gray-300 rounded px-6 py-3 m-10 text-black'
 						onClick={() => {
 							activate(injected, undefined, true).catch((error) => {
 								// ignore the error if it's a user rejected request
@@ -36,10 +37,10 @@ export default function AlertModal({ closeModal }) {
 						{isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
 					</button>
 				) : (
-					<button onClick={startOnboarding}>Install Metamask</button>
+					<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={startOnboarding}>Install Metamask</button>
 				)}
 
-				<button onClick={closeModal}>Close</button>
+				<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={closeModal}>Close</button>
 
 			</div>
 		);

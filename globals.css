@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.modal-header,
+.modal-body {
+  margin: 1rem;
+}
+.modal-footer {
+  padding: 2rem;
+}
