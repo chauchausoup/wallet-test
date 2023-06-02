@@ -1,22 +1,18 @@
-import { useWeb3React } from '@web3-react/core';
-import React, { useState } from 'react'
-import useMetaMaskOnboarding from '../../hooks/useMetaMaskOnboarding';
-import { injected } from '../../connectors'
+import { useWeb3React } from "@web3-react/core";
 import { UserRejectedRequestError } from "@web3-react/injected-connector";
-import { formatEtherscanLink, shortenHex } from '../../util';
-import useENSName from '../../hooks/useENSName';
-import ETHBalance from './ETHBalance';
-import ChainId from './ChainId';
+import { useEffect, useState } from "react";
+import { injected } from "../../connectors";
+import useENSName from "../../hooks/useENSName";
+import useMetaMaskOnboarding from "../../hooks/useMetaMaskOnboarding";
+import { formatEtherscanLink, shortenHex } from "../../util";
 
-export default function AlertModal({ openModal2, closeModal1 }) {
+type AccountProps = {
+	triedToEagerConnect: boolean;
+};
 
-
-
+const Account = ({ triedToEagerConnect }: AccountProps) => {
 	const { active, error, activate, deactivate, chainId, account, setError } =
 		useWeb3React();
-
-	const ENSName = useENSName(account);
-
 
 	const {
 		isMetaMaskInstalled,
@@ -25,23 +21,42 @@ export default function AlertModal({ openModal2, closeModal1 }) {
 		stopOnboarding,
 	} = useMetaMaskOnboarding();
 
+	// manage connecting state for injected connector
+	const [connecting, setConnecting] = useState(false);
+	useEffect(() => {
+		if (active || error) {
+			setConnecting(false);
+			stopOnboarding();
+		}
+	}, [active, error, stopOnboarding]);
+
+	const ENSName = useENSName(account);
+
+	if (error) {
+		return null;
+	}
+
+	if (!triedToEagerConnect) {
+		return null;
+	}
+
 	if (typeof account !== "string") {
 		return (
 			<div>
 				{isWeb3Available ? (
 					<button
+						disabled={connecting}
 						onClick={() => {
+							setConnecting(true);
 
 							activate(injected, undefined, true).catch((error) => {
 								// ignore the error if it's a user rejected request
 								if (error instanceof UserRejectedRequestError) {
+									setConnecting(false);
 								} else {
 									setError(error);
 								}
 							});
-
-
-
 						}}
 					>
 						{isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
@@ -52,16 +67,15 @@ export default function AlertModal({ openModal2, closeModal1 }) {
 			</div>
 		);
 	}
-
 	const disconnectHandler = () => {
 		console.log("disconnect")
 		deactivate()
+
 	}
 
-
 	return (
-		<div>
-			{account && <a
+		<>
+			<a
 				{...{
 					href: formatEtherscanLink("Account", [chainId, account]),
 					target: "_blank",
@@ -69,22 +83,10 @@ export default function AlertModal({ openModal2, closeModal1 }) {
 				}}
 			>
 				{ENSName || `${shortenHex(account, 4)}`}
-			</a>}
+			</a>
+			<br />
+			<button onClick={disconnectHandler}>disconnect</button></>
+	);
+};
 
-			<ETHBalance />
-
-			<ChainId />
-
-
-
-			<button onClick={() => {
-				disconnectHandler()
-			}}>
-				disconnect
-			</button>
-
-			<button onClick={closeModal1}>Close</button>
-
-		</div >
-	)
-}
+export default Account;
