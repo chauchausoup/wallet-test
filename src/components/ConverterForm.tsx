@@ -1,23 +1,22 @@
 "use client"
-
 import { useState } from 'react';
 
-const ConversionRate = 3; // Conversion rate: 1 NEP = 3 BUSD
+const CONVERSION_RATE = 3; // Conversion rate: 1 NEP = 3 BUSD
 
-const HomePage: React.FC = () => {
+const ConverterForm: React.FC = () => {
 	const [nepValue, setNepValue] = useState('');
 	const [busdValue, setBusdValue] = useState('');
 
 	const handleNepChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 		setNepValue(value);
-		setBusdValue(value ? (parseFloat(value) * ConversionRate).toString() : '');
+		setBusdValue(value ? (parseFloat(value) * CONVERSION_RATE).toString() : '');
 	};
 
 	const handleBusdChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 		setBusdValue(value);
-		setNepValue(value ? (parseFloat(value) / ConversionRate).toString() : '');
+		setNepValue(value ? (parseFloat(value) / CONVERSION_RATE).toString() : '');
 	};
 
 	return (
@@ -46,4 +45,4 @@ const HomePage: React.FC = () => {
 	);
 };
 
-export default HomePage;
+export default ConverterForm;

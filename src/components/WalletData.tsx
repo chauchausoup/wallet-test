@@ -1,24 +1,19 @@
 import React from 'react'
-import Account from './Account'
-import useEagerConnect from '../../hooks/useEagerConnect';
 import { useWeb3React } from '@web3-react/core';
-import { formatEtherscanLink, shortenHex } from '../../util';
-import useENSName from '../../hooks/useENSName';
+
 import ETHBalance from './ETHBalance';
 import ChainId from './ChainId';
 
-export default function WalletDetailsModal({ closeModal2 }) {
+import useENSName from '../../hooks/useENSName';
+import { formatEtherscanLink, shortenHex } from '../../util';
 
-	const { active, error, activate, deactivate, chainId, account, setError } =
-		useWeb3React();
+export default function WalletData({ closeModal }) {
 
+	const { chainId, account, deactivate } = useWeb3React();
 	const ENSName = useENSName(account);
 
-
-
-
 	const disconnectHandler = () => {
-		console.log("disconnect")
+		console.log("======DISCONNECT=====")
 		deactivate()
 	}
 
@@ -38,17 +33,11 @@ export default function WalletDetailsModal({ closeModal2 }) {
 
 			<ChainId />
 
-
-
-			<button onClick={() => {
-				closeModal2()
-				disconnectHandler()
-			}}>
-
-				disconnect
+			<button onClick={() => { disconnectHandler() }}>
+				Disconnect
 			</button>
 
-			<button onClick={closeModal2}>Close</button>
+			<button onClick={closeModal}>Close</button>
 
 		</div >
 	)

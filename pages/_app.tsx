@@ -1,6 +1,12 @@
 import { Web3ReactProvider } from "@web3-react/core";
 import type { AppProps } from "next/app";
 import getLibrary from "../getLibrary";
+import Modal from 'react-modal';
+
+if (typeof window !== 'undefined') {
+	Modal.setAppElement('#__next');
+}
+
 
 function NextWeb3App({ Component, pageProps }: AppProps) {
 	return (

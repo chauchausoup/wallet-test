@@ -1,12 +1,12 @@
 import React from 'react';
-import Form from '../src/components/form'
-import ModalButton from '../src/components/ModalButton'
+import ConverterForm from '../src/components/ConverterForm'
+import ModalComponent from '../src/components/ModalComponent';
 
 const HomePage = () => {
 	return (
 		<>
-			<Form />
-			<ModalButton />
+			<ConverterForm />
+			<ModalComponent />
 		</>
 	);
 };
