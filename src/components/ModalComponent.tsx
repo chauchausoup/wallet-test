@@ -5,7 +5,7 @@ import AlertModal from './AlertModal';
 import Button from './Button';
 
 
-function ModalComponent() {
+function ModalComponent(): JSX.Element {
 
 	const [modalOpen, setModalOpen] = useState(false);
 

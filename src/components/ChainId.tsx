@@ -1,8 +1,13 @@
-import useChainId from "../../hooks/useChainId";
+import React from 'react';
+import useChainId from '../../hooks/useChainId';
 
-const ChainId = () => {
+const ChainId: React.FC = () => {
 	const chainId = useChainId();
-	return <p>ChainID: {chainId}</p>;
+	return (
+		<p>
+			<span className="text-slate-500">ChainID: </span> {chainId}
+		</p>
+	);
 };
 
 export default ChainId;

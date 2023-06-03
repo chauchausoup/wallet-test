@@ -5,7 +5,7 @@ import ETHBalance from './ETHBalance';
 import ChainId from './ChainId';
 
 import useENSName from '../../hooks/useENSName';
-import { formatEtherscanLink, shortenHex } from '../../util';
+import { formatBSCLink, shortenHex } from '../../util';
 import Button from './Button';
 
 export default function WalletData({ closeModal }) {
@@ -23,7 +23,7 @@ export default function WalletData({ closeModal }) {
 			<div className="flex flex-col items-center justify-center p-10">
 				{account && <a
 					{...{
-						href: formatEtherscanLink("Account", [chainId, account]),
+						href: formatBSCLink("Account", [chainId, account]),
 						target: "_blank",
 						rel: "noopener noreferrer",
 					}}
