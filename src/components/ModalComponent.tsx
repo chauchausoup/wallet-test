@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+
 import AlertModal from './AlertModal';
+import Button from './Button';
 
 
 function ModalComponent() {
@@ -17,7 +19,7 @@ function ModalComponent() {
 
 	return (
 		<div>
-			<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={() => openModal()}>Check Status</button>
+			<Button onClickHandler={() => openModal()} buttonContent={`Check Status`} />
 			<div className=''>
 				{<Modal
 					isOpen={modalOpen}

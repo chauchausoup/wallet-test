@@ -7,6 +7,7 @@ import useMetaMaskOnboarding from '../../hooks/useMetaMaskOnboarding';
 import { injected } from '../../connectors'
 
 import WalletData from './WalletData';
+import Button from './Button';
 
 export default function AlertModal({ closeModal }) {
 
@@ -22,25 +23,22 @@ export default function AlertModal({ closeModal }) {
 		return (
 			<div>
 				{isWeb3Available ? (
-					<button
-						className='border border-gray-300 rounded px-6 py-3 m-10 text-black'
-						onClick={() => {
-							activate(injected, undefined, true).catch((error) => {
-								// ignore the error if it's a user rejected request
-								if (error instanceof UserRejectedRequestError) {
-								} else {
-									setError(error);
-								}
-							});
-						}}
-					>
-						{isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"}
-					</button>
+
+					<Button onClickHandler={() => {
+						activate(injected, undefined, true).catch((error) => {
+							// ignore the error if it's a user rejected request
+							if (error instanceof UserRejectedRequestError) {
+							} else {
+								setError(error);
+							}
+						});
+					}} buttonContent={isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"} />
+
 				) : (
-					<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={startOnboarding}>Install Metamask</button>
+					<Button onClickHandler={startOnboarding} buttonContent={`Install Metamask`} />
 				)}
 
-				<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={closeModal}>Close</button>
+				<Button onClickHandler={closeModal} buttonContent={`Close`} />
 
 			</div>
 		);

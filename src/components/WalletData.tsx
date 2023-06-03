@@ -6,6 +6,7 @@ import ChainId from './ChainId';
 
 import useENSName from '../../hooks/useENSName';
 import { formatEtherscanLink, shortenHex } from '../../util';
+import Button from './Button';
 
 export default function WalletData({ closeModal }) {
 
@@ -36,13 +37,8 @@ export default function WalletData({ closeModal }) {
 			</div >
 
 			<div className='flex flex-row items-center justify-center '>
-
-				<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={() => { disconnectHandler() }}>
-					Disconnect
-				</button>
-
-				<button className='border border-gray-300 rounded px-6 py-3 m-10 text-black' onClick={closeModal}>Close</button>
-
+				<Button onClickHandler={() => { disconnectHandler() }} buttonContent={`Disconnect`} />
+				<Button onClickHandler={closeModal} buttonContent={`Close`} />
 			</div>
 		</div>
 	)
