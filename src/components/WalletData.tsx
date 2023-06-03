@@ -19,7 +19,7 @@ export default function WalletData({ closeModal }) {
 
 	return (
 		<div>
-			<div className="flex flex-col items-center justify-center">
+			<div className="flex flex-col items-center justify-center p-10">
 				{account && <a
 					{...{
 						href: formatEtherscanLink("Account", [chainId, account]),

@@ -20,7 +20,7 @@ export default function AlertModal({ closeModal }) {
 
 	if (typeof account !== "string") {
 		return (
-			<div className='flex flex-row items-center justify-center'>
+			<div>
 				{isWeb3Available ? (
 					<button
 						className='border border-gray-300 rounded px-6 py-3 m-10 text-black'

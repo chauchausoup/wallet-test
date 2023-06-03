@@ -22,25 +22,30 @@ const ConverterForm: React.FC = () => {
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<h1 className="text-3xl mb-4 pb-6">Currency Converter</h1>
-			<label className="space-x-10">
-				NEP:
+			<div className='flex flex-row'>
+				<label className="px-5">
+					NEP:
+				</label>
 				<input
 					type="number"
 					value={nepValue}
 					onChange={handleNepChange}
 					className="border border-gray-300 rounded px-6 py-1 text-black"
 				/>
-			</label>
-			<br />
-			<label className="space-x-10">
-				BUSD:
+			</div>
+			<div>
+				<br />
+				<label className="px-4">
+					BUSD:
+				</label>
+
 				<input
 					type="number"
 					value={busdValue}
 					onChange={handleBusdChange}
 					className="border border-gray-300 rounded px-6 py-1 text-black"
 				/>
-			</label>
+			</div>
 		</div>
 	);
 };
