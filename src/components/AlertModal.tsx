@@ -33,6 +33,7 @@ export default function AlertModal({ closeModal }: AlertModalProps): JSX.Element
 	if (typeof account !== "string") {
 		return (
 			<div>
+				<p className='m-5 text-red-500'>No wallet detected. Please follow below operation to continue.</p>
 				{isWeb3Available ? (
 					<Button onClickHandler={activateWallet} buttonContent={isMetaMaskInstalled ? "Connect to MetaMask" : "Connect to Wallet"} />
 				) : (
