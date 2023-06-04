@@ -1,5 +1,5 @@
 import React from 'react';
-import useChainId from '../../hooks/useChainId';
+import useChainId from 'lib/hooks/useChainId';
 
 const ChainId: React.FC = () => {
 	const chainId = useChainId();
