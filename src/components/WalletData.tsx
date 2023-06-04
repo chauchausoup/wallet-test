@@ -4,16 +4,17 @@ import { useWeb3React } from '@web3-react/core';
 import ETHBalance from './ETHBalance';
 import ChainId from './ChainId';
 
-import useENSName from '../../hooks/useENSName';
-import { formatBSCLink, shortenHex } from '../../util';
+import useENSName from '../lib/hooks/useENSName';
+import { formatBSCLink, shortenHex } from 'lib/util';
 import Button from './Button';
 
 export default function WalletData({ closeModal }) {
 
 	const { chainId, account, deactivate } = useWeb3React();
+
 	const ENSName = useENSName(account);
 
-	const disconnectHandler = () => {
+	const disconnectHandler = async () => {
 		console.log("======DISCONNECT=====")
 		deactivate()
 	}
@@ -30,9 +31,7 @@ export default function WalletData({ closeModal }) {
 				>
 					{ENSName || `${shortenHex(account, 4)}`}
 				</a>}
-
 				<ETHBalance />
-
 				<ChainId />
 			</div >
 

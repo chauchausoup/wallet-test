@@ -1,45 +1,63 @@
 import React, { useState, ChangeEvent } from 'react';
+import Image from 'next/image';
 
-const CONVERSION_RATE = 3; // Conversion rate: 1 NEP = 3 BUSD
+import { busdToNepConversion, nepToBusdConversion } from 'lib/util';
 
-const ConverterForm: React.FC = () => {
-	const [nepValue, setNepValue] = useState<string>('');
-	const [busdValue, setBusdValue] = useState<string>('');
+import Button from './Button';
+
+const ConverterForm = ({ openModal }) => {
+	const [nepValue, setNepValue] = useState('');
+	const [busdValue, setBusdValue] = useState('');
 
 	const handleNepChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 		setNepValue(value);
-		setBusdValue(value ? (parseFloat(value) * CONVERSION_RATE).toFixed(2).toString() : '');
+		setBusdValue(value ? nepToBusdConversion(value) : '');
 	};
 
 	const handleBusdChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { value } = event.target;
 		setBusdValue(value);
-		setNepValue(value ? (parseFloat(value) / CONVERSION_RATE).toFixed(2).toString() : '');
+		setNepValue(value ? busdToNepConversion(value) : '');
 	};
 
 	return (
 		<div className="flex flex-col items-center justify-center">
-			<h1 className="text-3xl mb-4 pb-6">Currency Converter</h1>
-			<div className="flex flex-row">
-				<label className="px-5">NEP:</label>
-				<input
-					type="number"
-					value={nepValue}
-					onChange={handleNepChange}
-					className="border border-gray-300 rounded px-6 py-1 text-black"
-				/>
+			<Image
+				src="/assets/hero.jpg"
+				width={250}
+				height={250}
+				alt="Picture of the author"
+				className="m-10"
+			/>
+
+			<div className="flex flex-col ">
+				<div className="">
+					<label className="">NEP:</label>
+				</div>
+				<div className="flex flex-row">
+					<input
+						type="number"
+						value={nepValue}
+						onChange={handleNepChange}
+						className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					/>
+				</div>
+
+				<div className=" mt-4">
+					<label className="">BUSD:</label>
+				</div>
+				<div className="flex flex-row">
+					<input
+						type="number"
+						value={busdValue}
+						onChange={handleBusdChange}
+						className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+					/>
+				</div>
 			</div>
-			<div>
-				<br />
-				<label className="px-4">BUSD:</label>
-				<input
-					type="number"
-					value={busdValue}
-					onChange={handleBusdChange}
-					className="border border-gray-300 rounded px-6 py-1 text-black"
-				/>
-			</div>
+
+			<Button onClickHandler={openModal} buttonContent="Check Status" />
 		</div>
 	);
 };

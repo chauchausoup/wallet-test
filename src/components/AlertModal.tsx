@@ -1,8 +1,8 @@
 import React from 'react';
 import { UserRejectedRequestError } from "@web3-react/injected-connector";
 import { useWeb3React } from '@web3-react/core';
-import useMetaMaskOnboarding from '../../hooks/useMetaMaskOnboarding';
-import { injected } from '../../connectors';
+import useMetaMaskOnboarding from 'lib/hooks/useMetaMaskOnboarding';
+import { injected } from 'lib/connectors';
 import WalletData from './WalletData';
 import Button from './Button';
 
@@ -13,11 +13,9 @@ interface AlertModalProps {
 export default function AlertModal({ closeModal }: AlertModalProps): JSX.Element {
 	const { activate, account, setError } = useWeb3React();
 
-	const activateWallet = () => {
-		activate(injected, undefined, true).catch((error: Error) => {
-			// ignore the error if it's a user rejected request
+	const activateWallet = async () => {
+		await activate(injected, undefined, true).catch((error: Error) => {
 			if (error instanceof UserRejectedRequestError) {
-				// handle user rejected request
 			} else {
 				setError(error);
 			}
