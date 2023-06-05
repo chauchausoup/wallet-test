@@ -1,8 +1,10 @@
 module.exports = {
-  // Other Next.js configuration...
-  // ...
+    i18n: {
 
-  // Enable PostCSS
+    locales: ['en', 'ne',],
+
+    defaultLocale: 'en',
+  },
   reactStrictMode: true,
 
 };

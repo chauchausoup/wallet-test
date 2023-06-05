@@ -22,3 +22,13 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      // You can get the messages from anywhere you like. The recommended pattern
+      // is to put them in JSON files separated by locale (e.g. `en.json`).
+      messages: (await import(`../../messages/${context.locale}.json`)).default,
+    },
+  };
+}

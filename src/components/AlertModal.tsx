@@ -1,4 +1,6 @@
 import React, { useCallback } from 'react';
+import { useTranslations } from 'next-intl';
+
 import { UserRejectedRequestError } from '@web3-react/injected-connector';
 import { useWeb3React } from '@web3-react/core';
 import useMetaMaskOnboarding from '../lib/hooks/useMetaMaskOnboarding';
@@ -14,6 +16,8 @@ export default function AlertModal({
   closeModal,
 }: AlertModalProps): JSX.Element {
   const { account, activate } = useWeb3React();
+
+  const t = useTranslations('Index');
 
   const connectMetaMask = useCallback(async () => {
     try {
@@ -33,9 +37,7 @@ export default function AlertModal({
   if (!account) {
     return (
       <div>
-        <p className="m-5 text-red-500">
-          No wallet detected. Please follow the steps below to continue.
-        </p>
+        <p className="m-5 text-red-500">{t('alert_info')}</p>
         {isWeb3Available ? (
           <Button
             onClickHandler={connectMetaMask}
