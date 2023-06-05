@@ -5,7 +5,7 @@ import { parseBalance } from '../lib/util';
 
 const ETHBalance: React.FC = () => {
   const { account } = useWeb3React<Web3Provider>();
-  const { data } = useETHBalance(account);
+  const { data } = useETHBalance(account || '');
 
   return (
     <p>

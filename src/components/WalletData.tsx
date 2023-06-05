@@ -11,7 +11,7 @@ import Button from './Button';
 export default function WalletData({ closeModal }) {
   const { chainId, account, deactivate } = useWeb3React();
 
-  const ENSName = useENSName(account);
+  const ENSName = useENSName(account || '');
 
   const disconnectHandler = async () => {
     console.log('======DISCONNECT=====');
@@ -24,7 +24,7 @@ export default function WalletData({ closeModal }) {
         {account && (
           <a
             {...{
-              href: formatBSCLink('Account', [chainId, account]),
+              href: formatBSCLink('Account', [chainId || 0, account]),
               target: '_blank',
               rel: 'noopener noreferrer',
             }}

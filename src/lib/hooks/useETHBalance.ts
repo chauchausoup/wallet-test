@@ -10,7 +10,7 @@ export default function useETHBalance(address: string, suspense = false) {
 
   const result = useSWR(
     shouldFetch ? ["ETHBalance", address, chainId] : null,
-    ([, address]) => library.getBalance(address),
+    ([, address]) => library?.getBalance(address),
     {
       suspense,
     }
