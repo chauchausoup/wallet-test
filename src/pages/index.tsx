@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import ConverterForm from '@/components/ConverterForm';
 import ModalComponent from '@/components/ModalComponent';
 
-const HomePage = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+interface HomePageProps {
+  messages: any;
+}
 
-  function openModal() {
+const HomePage: React.FC<HomePageProps> = ({ messages }) => {
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const openModal = () => {
     setModalOpen(true);
-  }
+  };
 
-  function closeModal() {
+  const closeModal = () => {
     setModalOpen(false);
-  }
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
@@ -23,11 +27,9 @@ const HomePage = () => {
 
 export default HomePage;
 
-export async function getStaticProps(context) {
+export async function getStaticProps(context: any) {
   return {
     props: {
-      // You can get the messages from anywhere you like. The recommended pattern
-      // is to put them in JSON files separated by locale (e.g. `en.json`).
       messages: (await import(`../../messages/${context.locale}.json`)).default,
     },
   };
