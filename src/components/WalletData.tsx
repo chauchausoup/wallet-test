@@ -1,12 +1,12 @@
 import React from 'react';
 import { useWeb3React } from '@web3-react/core';
 
+import useENSName from '@/lib/hooks/useENSName';
+import { formatBSCLink, shortenHex } from '@/lib/util';
+
+import Button from './Button';
 import ETHBalance from './ETHBalance';
 import ChainId from './ChainId';
-
-import useENSName from '../lib/hooks/useENSName';
-import { formatBSCLink, shortenHex } from '../lib/util';
-import Button from './Button';
 
 export default function WalletData({ closeModal }) {
   const { chainId, account, deactivate } = useWeb3React();

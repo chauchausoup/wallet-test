@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import Image from 'next/image';
 
-import { busdToNepConversion, nepToBusdConversion } from '../lib/util';
+import { busdToNepConversion, nepToBusdConversion } from '@/lib/util';
 
 import Button from './Button';
 

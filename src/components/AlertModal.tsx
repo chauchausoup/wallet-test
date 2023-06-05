@@ -1,10 +1,9 @@
 import React, { useCallback } from 'react';
 import { useTranslations } from 'next-intl';
-
 import { UserRejectedRequestError } from '@web3-react/injected-connector';
 import { useWeb3React } from '@web3-react/core';
-import useMetaMaskOnboarding from '../lib/hooks/useMetaMaskOnboarding';
-import { injected } from '../lib/connectors';
+import useMetaMaskOnboarding from '@/lib/hooks/useMetaMaskOnboarding';
+import { injected } from '@/lib/connectors';
 import WalletData from './WalletData';
 import Button from './Button';
 

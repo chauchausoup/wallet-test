@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ConverterForm from '../components/ConverterForm';
-import ModalComponent from '../components/ModalComponent';
+import ConverterForm from '@/components/ConverterForm';
+import ModalComponent from '@/components/ModalComponent';
 
 const HomePage = () => {
   const [modalOpen, setModalOpen] = useState(false);

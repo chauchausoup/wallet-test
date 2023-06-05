@@ -1,7 +1,7 @@
 import type { Web3Provider } from '@ethersproject/providers';
 import { useWeb3React } from '@web3-react/core';
-import useETHBalance from '../lib/hooks/useETHBalance';
-import { parseBalance } from '../lib/util';
+import useETHBalance from '@/lib/hooks/useETHBalance';
+import { parseBalance } from '@/lib/util';
 
 const ETHBalance: React.FC = () => {
   const { account } = useWeb3React<Web3Provider>();
