@@ -8,7 +8,7 @@ export default function useBlockNumber() {
 
   return useSWR(
     shouldFetch ? ["BlockNumber"] : null,
-    () => library.getBlockNumber(),
+    () => library?.getBlockNumber(),
     {
       refreshInterval: 10 * 1000,
     }
